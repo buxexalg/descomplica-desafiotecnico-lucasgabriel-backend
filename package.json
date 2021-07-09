@@ -1,0 +1,37 @@
+{
+  "name": "descomplica-desafiotecnico-lucasgabriel-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "apollo-server-express": "^2.25.2",
+    "class-validator": "^0.13.1",
+    "dotenv": "^10.0.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.23.4",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.6.5",
+    "ts-node": "^10.1.0",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.3.1",
+    "eslint": "^7.30.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.11",
+    "prettier": "2.3.2",
+    "typescript": "^4.3.5"
+  }
+}
