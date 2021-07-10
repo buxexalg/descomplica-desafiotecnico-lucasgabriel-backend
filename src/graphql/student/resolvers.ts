@@ -12,13 +12,42 @@ interface StudentInterface {
 
 export const resolvers = {
 	Query: {
-		getStudent: (): any => db('students').select(),
+		getStudent: async (
+			_: StudentInterface,
+			args: StudentInterface
+		): Promise<StudentInterface[]> => {
+			const { name, cpf, email } = args;
+
+			if (!name && !cpf && !email) {
+				return db('students').select();
+			}
+
+			const studentInfo: StudentInterface[] = [];
+
+			if (cpf) {
+				const info = await db('students').where({ cpf }).first();
+				studentInfo.push(info);
+			} else if (email) {
+				const info = await db('students').where({ name }).first();
+				studentInfo.push(info);
+			} else if (name) {
+				return db('students').where({ name }).select();
+			}
+
+			return studentInfo;
+		},
 	},
 	Mutation: {
 		async addStudent(
 			_: StudentInterface,
 			{ name, cpf, email }: StudentInterface
 		): Promise<StudentInterface> {
+			if (!name) {
+				throw new UserInputError('Please insert a name value', {
+					argumentName: 'name',
+				});
+			}
+
 			if (!isCpf(cpf)) {
 				throw new UserInputError('Invalid cpf value', {
 					argumentName: 'cpf',
