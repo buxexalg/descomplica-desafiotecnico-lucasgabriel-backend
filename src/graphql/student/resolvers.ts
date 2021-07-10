@@ -1,10 +1,4 @@
-const estudante = [
-	{
-		name: 'Lucas',
-		cpf: '05616772550',
-		email: 'luquinhas123@gmail.com',
-	},
-];
+import db from '../../database/knex';
 
 interface StudentInterface {
 	name: string;
@@ -14,20 +8,20 @@ interface StudentInterface {
 
 export const resolvers = {
 	Query: {
-		getStudent: (): StudentInterface[] => estudante,
+		getStudent: (): any => db('students').select(),
 	},
 	Mutation: {
-		addStudent(
+		async addStudent(
 			_: StudentInterface,
 			{ name, cpf, email }: StudentInterface
-		): StudentInterface {
+		): Promise<StudentInterface> {
 			const student = {
 				name,
 				cpf,
 				email,
 			};
 
-			estudante.push(student);
+			await db('students').insert(student).table('students');
 
 			return student;
 		},
