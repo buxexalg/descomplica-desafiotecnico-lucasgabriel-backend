@@ -6,7 +6,13 @@ import { typeDefs } from './src/graphql/student/schema';
 
 import { resolvers } from './src/graphql/student/resolvers';
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+	typeDefs,
+	resolvers,
+	playground: {
+		endpoint: '/graphql',
+	},
+});
 server.start();
 
 const app = express();
