@@ -9,7 +9,7 @@ export const typeDefs = gql`
 	}
 
 	type Query {
-		getStudent(name: String, cpf: String, email: String): [Student!]!
+		getStudent(name: String, cpf: String, email: String): [Student]!
 	}
 
 	type Mutation {
