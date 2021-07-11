@@ -28,10 +28,14 @@ export const resolvers = {
 				const info = await db('students').where({ cpf }).first();
 				studentInfo.push(info);
 			} else if (email) {
-				const info = await db('students').where({ name }).first();
+				const info = await db('students')
+					.where('email', 'ilike', `%${email}%`)
+					.first();
 				studentInfo.push(info);
 			} else if (name) {
-				return db('students').where({ name }).select();
+				return db('students')
+					.where('name', 'ilike', `%${name}%`)
+					.select();
 			}
 
 			return studentInfo;
